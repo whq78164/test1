@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="" />
+	<meta name="作者"      content="吴汉青 (tbhome.com.cn)">
+    <title>二维码生成</title>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery-qrcode/1.0.0/jquery.qrcode.min.js"></script>
+<script>
+function toUtf8(str) {    
+    var out, i, len, c;    
+    out = "";    
+    len = str.length;    
+    for(i = 0; i < len; i++) {    
+        c = str.charCodeAt(i);    
+        if ((c >= 0x0001) && (c <= 0x007F)) {    
+            out += str.charAt(i);    
+        } else if (c > 0x07FF) {    
+            out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));    
+            out += String.fromCharCode(0x80 | ((c >>  6) & 0x3F));    
+            out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));    
+        } else {    
+            out += String.fromCharCode(0xC0 | ((c >>  6) & 0x1F));    
+            out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));    
+        }    
+    }    
+    return out;    
+}
+</script>
+</head>
+<body>
+<div id="qrcode123">
+<script>
+var str = toUtf8("MECARD:N:吴汉青;ADR:泉州市鲤城区,福建省;TEL:15980000000; EMAIL:554553400@qq.com;URL:http://tbhome.com.cn;QQ:554553400;;");  
+var str1 = toUtf8("smsto:13800138000:你好，我来自志文工作室");  
+$('#qrcode123').qrcode(str);
+
+ /*
+$("#code").qrcode({ 
+    render: "table", //table方式 
+    width: 200, //宽度 
+    height:200, //高度 
+    text: "www.helloweba.com" //任意内容 
+});
+ */
+
+</script>
+</div> 
+</body>
+</html>
